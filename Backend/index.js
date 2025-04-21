@@ -1,0 +1,47 @@
+// import dotenv from 'dotenv';
+// import connectdb from './db.js';
+// import app from './app.js';  // Import the app instance
+// import { initializeSocket } from './socket.js';
+// import http from 'http'; // Import the http module
+
+// dotenv.config({
+//     path: './.env'  // Typically the file should be `.env`
+// });
+
+// const server = http.createServer(app); // Create an HTTP server with the app
+
+// initializeSocket(server); // Pass the server to initializeSocket
+
+// connectdb()
+//     .then(() => {
+//         server.listen(process.env.PORT || 3000, () => { // Use server.listen instead of app.listen
+//             console.log(`⚙️ Server is running at port: ${process.env.PORT || 3000}`);
+//         });
+//     })
+//     .catch((err) => {
+//         console.log("MONGO db connection failed!!!", err);
+//     });
+
+import dotenv from 'dotenv';
+import connectdb from './db.js';
+import app from './app.js';  
+import { initializeSocket } from './socket.js';  // Ensure this file exists
+import http from 'http'; 
+
+dotenv.config({
+    path: './.env'
+});
+
+const server = http.createServer(app); 
+
+initializeSocket(server); // Initialize socket with the server
+
+connectdb()
+    .then(() => {
+        server.listen(process.env.PORT || 3000, () => { 
+            console.log(`⚙️ Server is running at port: ${process.env.PORT || 3000}`);
+        });
+    })
+    .catch((err) => {
+        console.log("MONGO db connection failed!!!", err);
+    });
