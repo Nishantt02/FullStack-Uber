@@ -42,34 +42,36 @@ const Home = () => {
   const navigate = useNavigate();
 
 
-  // useEffect(() => {
-  //     console.log("🚀 user before emitting socket join:", user);
-  //     if (!user || !user._id) return;
-
-  //     const payload = {
-  //       userId: user._id,
-  //       userType: "user",
-  //     };
-
-  //     console.log("Emitting join with:", payload);
-  //     socket.emit("join", payload);
-  //   }, [user]);
-
   useEffect(() => {
-    const hardcodedUserId = "67fbeac1cc84624da6688314";
-
+    console.log("👀 Full user object:", user);
+  
+    // Try multiple ways to get the ID
+    const userId =
+      user?._id ||
+      user?.id ||
+      user?.user?._id ||
+      user?._doc?._id;
+  
+    console.log("🧩 Extracted userId:", userId);
+  
+    if (!userId) {
+      console.warn("❌ No userId found, skipping socket.emit.");
+      return;
+    }
+  
     const payload = {
-      userId: hardcodedUserId,
+      userId,
       userType: "user",
     };
-
-    console.log("🚀 Emitting join with hardcoded ID:", payload);
-
+  
+    console.log("✅ Emitting join with payload:", payload);
     socket.emit("join", payload);
-  }, [user]); // Empty dependency array so it only runs once
+  }, [user]);
+  
 
   socket.on("ride-confirmed", (ride) => {
     console.log("Ride confirmed:", ride);
+    console.log("OTP", ride.otp);
     setVehicleFound(false);
     setWaitingForDriver(true);
     setRide(ride);
@@ -220,7 +222,7 @@ const Home = () => {
       setVehiclePanelOpen(true);
       setPanelOpen(false);
 
-      const response = await axios.get(
+      const response =   await axios.get(
         `${import.meta.env.VITE_BASE_URL}/ride/get-fare`,
         {
           params: {

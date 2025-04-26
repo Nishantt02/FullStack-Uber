@@ -83,7 +83,7 @@ const confirmRide = async (req, res) => {
 
         sendMessageToSocketId(ride.user.socketId, {
             event: 'ride-confirmed',
-            data: rideId
+            data: ride
         });
 
         res.status(200).json(ride);

@@ -1,7 +1,7 @@
 
 import Rides from "../models/rides.models.js";
 import { getDistanceTime } from "./map.service.js";
-import captainModel from "../models/caption.models.js";
+import crypto from "crypto";
 
 async function getfare(origin, destination) {
     if (!origin || !destination) {
@@ -54,6 +54,15 @@ async function getfare(origin, destination) {
     return fare;
 }
 
+
+function getOtp(num) {
+    function generateOtp(num) {
+        const otp = crypto.randomInt(Math.pow(10, num - 1), Math.pow(10, num)).toString();
+        return otp;
+    }
+    return generateOtp(num);
+}
+
 // create operations
 const createrides = async (data) => {
     const { User: user, origin, destination, vehicleType } = data;
@@ -73,7 +82,7 @@ const createrides = async (data) => {
         origin,  
         destination,
         fare: fare[vehicleType],
-        otp: Math.floor(1000 + Math.random() * 9000) // Ensuring OTP is always present
+        otp: getOtp(5),
     });
 
     return ride;

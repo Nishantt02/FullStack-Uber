@@ -31,7 +31,8 @@ const UserSignup = () => {
       const data = response.data;
       setUser(data.User)
       localStorage.setItem('token', data.token);
-      navigate('/Home');
+      // navigate('/Home');
+      navigate('/userlogin')
     }
 
     setFullName('');
