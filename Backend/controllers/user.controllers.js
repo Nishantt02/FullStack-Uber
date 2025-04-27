@@ -66,7 +66,12 @@ const loginuser=async(req,res)=>{
         }
 
         const token=await user.generateAuthToken()
-        res.cookie('token', token);
+        res.cookie("user_token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", 
+            sameSite: "Strict",
+        });
+        
         res.status(200).json({token,user})
     }
     catch(error){
