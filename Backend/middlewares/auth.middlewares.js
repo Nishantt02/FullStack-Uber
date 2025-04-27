@@ -34,28 +34,7 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
-// const verifycaptain = async (req, res, next) => {
-//   const token = req.cookies.token || (req.headers.authorization && req.headers.authorization.split(' ')[1]);
-//   if (!token) {
-//       return res.status(401).json({ message: 'Access Denied' });
-//   }
-//   const isBlacklisted = await Black.findOne({ token: token });
-//   if (isBlacklisted) {
-//       return res.status(401).json({ message: 'Unauthorized' });
-//   }
-//   try {
-//     // It is the decoded token and get the user id for authentaion
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-//     const captain = await captainModel.findById(decoded._id);
-//     if (!captain) {
-//         return res.status(401).json({ message: 'Captain not found' });
-//     }
-//     req.captain = captain;
-//     return next();
-//   } catch (error) {
-//     res.status(401).json({ message: 'Invalid token' });
-//   }
-// }
+
 
 const verifycaptain = async (req, res, next) => {
   const token = req.cookies.token || (req.headers.authorization && req.headers.authorization.split(' ')[1]);
@@ -63,7 +42,7 @@ const verifycaptain = async (req, res, next) => {
     return res.status(401).json({ message: 'Access Denied' });
   }
   console.log("recieved token")
-  const isBlacklisted = await Black.findOne({ token: token });
+  // const isBlacklisted = await Black.findOne({ token: token });
   // if (isBlacklisted) {
   //   return res.status(401).json({ message: 'Unauthorized' });
   // }

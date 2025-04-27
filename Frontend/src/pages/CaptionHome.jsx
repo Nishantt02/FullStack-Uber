@@ -66,24 +66,50 @@ const CaptainHome = () => {
 
     })
 
+    // async function confirmRide() {
+
+    //     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/ride/confirm`, {
+
+    //         rideId: ride._id,
+    //         captainId: captain._id,
+
+
+    //     }, {
+    //         headers: {
+    //             Authorization: `Bearer ${localStorage.getItem('captainToken')}`
+    //         }
+    //     })
+    //  console.log(response.data)
+    //     setRidePopupPanel(false)
+    //     setConfirmRidePopupPanel(true)
+
+    // }
+
     async function confirmRide() {
+  const captainToken = localStorage.getItem('captainToken');
+  if (!captainToken) {
+    console.error('Captain token not found in localStorage!');
+    return;
+  }
 
-        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/ride/confirm`, {
+  try {
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/ride/confirm`, {
+      rideId: ride._id,
+      captainId: captain._id,
+    }, {
+      headers: {
+        Authorization: `Bearer ${captainToken}`
+      }
+    });
+    console.log(response.data);
+    setRidePopupPanel(false);
+    setConfirmRidePopupPanel(true);
+  } catch (error) {
+    console.error('Error confirming ride:', error.response?.data || error.message);
+    // you can even show a popup or toast to user if you want
+  }
+}
 
-            rideId: ride._id,
-            captainId: captain._id,
-
-
-        }, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('captainToken')}`
-            }
-        })
-     console.log(response.data)
-        setRidePopupPanel(false)
-        setConfirmRidePopupPanel(true)
-
-    }
 
     useGSAP(function () {
         if (ridePopupPanel) {

@@ -1,4 +1,3 @@
-
 import dotenv from 'dotenv';
 import connectdb from './db.js';
 import app from './app.js';  
@@ -8,6 +7,7 @@ import http from 'http';
 dotenv.config({
     path: './.env'
 });
+
 
 const server = http.createServer(app); 
 

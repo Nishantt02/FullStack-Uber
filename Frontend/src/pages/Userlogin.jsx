@@ -25,7 +25,9 @@ const Userlogin = () => {
             const data = response.data;
             setUser(data.User)
             console.log(data)
+            localStorage.removeItem('captainToken')
             localStorage.setItem('token', data.token)
+           
             navigate('/Home')
         }
         console.log(import.meta.env.VITE_BASE_URL);

@@ -31,14 +31,14 @@ const UserSignup = () => {
       const data = response.data;
       setUser(data.User)
       localStorage.setItem('token', data.token);
-      // navigate('/Home');
-      navigate('/userlogin')
+      navigate('/Home');
     }
 
     setFullName('');
     setEmail('');
     setPassword('');
   };
+  
 
   return (
     <div>
