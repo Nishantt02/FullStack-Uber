@@ -6,7 +6,7 @@ import LocationSearchPanel from "../components/LocationSearchPanel.jsx";
 import LiveTraking from "../components/LiveTraking.jsx";
 import ConfirmRide from "../components/ConfirmRide.jsx";
 import WaitingForDriver from "../components/WaitingForDriver.jsx";
-import LookingForDriver from "../components/LookingforDriver.jsx";
+import LookingForDriver from "../components/LookingForDriver.jsx";
 import VehiclePanel from "../components/VehiclePanel.jsx";
 import { SocketContext } from "../Context/SocketContext.jsx";
 import { UserDataContext } from "../Context/UserContext.jsx";
