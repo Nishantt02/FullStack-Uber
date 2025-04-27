@@ -1,38 +1,3 @@
-// import express from 'express'
-// import cors from 'cors'
-// import dotenv from 'dotenv'
-// import cookieParser from 'cookie-parser'
-// import router from './routes/user.routes.js'
-// import captionroutes from './routes/caption.routes.js'
-// import maprouter from './routes/map.routes.js'
-// import ridesrouter from './routes/rides.routes.js'
-// import path from 'path';
-
-// const app= express()
-
-// const __dirname=path.resolve(); // Get the current directory name
-
-// app.use(express.static(path.join(__dirname, '/Frontend/Project/dist'))); // Serve static files from the public directory
-// app.get('*',(req,res)=>{
-//     res.sendFile(path.resolve(__dirname, "Frontend", "Project", "dist", "index.html"));
-// })
-
-// app.use(cors())
-// app.use(express.json())
-// dotenv.config()
-// app.use(express.urlencoded({extended:true}))
-// app.use(cookieParser())
-
-// app.get('/get',(req,res)=>{
-//     res.send('hello')
-// })
-// app.use('/users',router);
-// app.use('/caption',captionroutes)
-// app.use('/map',maprouter);
-// app.use('/ride',ridesrouter)
-
-
-// export default app;
 
 
 import express from 'express';

@@ -25,7 +25,6 @@ const Userlogin = () => {
             const data = response.data;
             setUser(data.User)
             console.log(data)
-            localStorage.removeItem('captainToken')
             localStorage.setItem('token', data.token)
            
             navigate('/Home')

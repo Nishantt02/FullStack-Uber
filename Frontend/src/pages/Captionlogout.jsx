@@ -13,7 +13,7 @@ export const Captionlogout = () => {
         }
     }).then((response) => {
         if (response.status === 200) {    // Check if the response status is 200 (OK)
-            localStorage.removeItem('token') // Remove the token from localStorage
+            localStorage.removeItem('captainToken') // Remove the token from localStorage
             navigate('/captionlogin')
         }
     })
