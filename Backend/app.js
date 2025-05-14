@@ -37,6 +37,7 @@
 // });
 
 // export default app;
+
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -61,10 +62,9 @@ const app = express();
 
 // Define allowed origins for CORS
 const allowedOrigins = [
-  'https://fullstack-uber-0.onrender.com',
-  'https://fullstack-uber-1.onrender.com',
+  
   'https://fullstack-uber.onrender.com',
-  'http://localhost:3000'
+  
 ];
 
 // Configure CORS middleware
@@ -96,12 +96,13 @@ app.use('/caption', captionRoutes);
 app.use('/map', mapRoutes);
 app.use('/ride', ridesRoutes);
 
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, 'Frontend', 'dist')));
+// Serve frontend static files (adjust path to correct sibling directory)
+const frontendDistPath = path.join(__dirname, '..', 'Frontend', 'dist');
+app.use(express.static(frontendDistPath));
 
 // SPA fallback to index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'Frontend', 'dist', 'index.html'));
+  res.sendFile(path.join(frontendDistPath, 'index.html'));
 });
 
 export default app;

@@ -101,10 +101,9 @@ import captainModel from './models/caption.models.js';
 let io;
 
 const allowedOrigins = [
-  'https://fullstack-uber-0.onrender.com',
-  'https://fullstack-uber-1.onrender.com',
+ 
   'https://fullstack-uber.onrender.com',
-  'http://localhost:3000'
+
 ];
 
 function initializeSocket(server) {
