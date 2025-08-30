@@ -13,39 +13,37 @@ const __dirname = path.resolve();
 
 dotenv.config();
 
-// ✅ Define CORS options properly
+// ✅ Define corsOptions BEFORE using it
 const corsOptions = {
-  origin: '3000',  // your frontend deployed URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: process.env.CLIENT_URL || "http://localhost:5173", 
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 };
 
-// ✅ Use only once
+// ✅ Use corsOptions here
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// 🛠 Setup backend API routes FIRST
-app.get('/get', (req, res) => {
-  res.send('hello');
+// Routes...
+app.get("/get", (req, res) => {
+  res.send("hello");
 });
 
-app.get('/cors-test', (req, res) => {
-  res.json({ message: 'CORS is working!' });
+app.get("/cors-test", (req, res) => {
+  res.json({ message: "CORS is working!" });
 });
 
-app.use('/users', router);
-app.use('/caption', captionroutes);
-app.use('/map', maprouter);
-app.use('/ride', ridesrouter);
+app.use("/users", router);
+app.use("/caption", captionroutes);
+app.use("/map", maprouter);
+app.use("/ride", ridesrouter);
 
-// 🛠 Serve frontend static files
-app.use(express.static(path.join(__dirname, '/Frontend/dist')));
-
-// 🛠 Catch all other routes for frontend (SPA)
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'Frontend', 'dist', 'index.html'));
+// Serve frontend
+app.use(express.static(path.join(__dirname, "/Frontend/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"));
 });
 
 export default app;
