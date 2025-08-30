@@ -15,7 +15,7 @@ dotenv.config();
 
 // ✅ Define corsOptions BEFORE using it
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "http://localhost:5173", 
+  origin: "https://fullstack-uber-12.onrender.com", 
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 };
