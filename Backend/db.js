@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const connectDB = async () => {
-  const uri = process.env.mongodb_URI;            // match this in your .env / Render
+  const uri = process.env.MONGODB_URI;            // match this in your .env / Render
   if (!uri) {
     throw new Error('Environment variable MONGODB_URI not defined');
   }
