@@ -16,17 +16,15 @@ dotenv.config();
 // ✅ Define corsOptions BEFORE using it
 const corsOptions = {
   origin: [
-    "https://fullstack-uber-12.onrender.com",  // backend
-    "https://fullstack-uber-13.onrender.com"   // frontend
+    "https://fullstack-uber-12.onrender.com",  // backend (optional, not needed usually)
+    "https://fullstack-uber-13.onrender.com",  // frontend
+    "http://localhost:5173"                    // local dev frontend
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 };
 
-app.use(cors(corsOptions));
-
-
-// ✅ Use corsOptions here
+// ✅ Apply once only
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
