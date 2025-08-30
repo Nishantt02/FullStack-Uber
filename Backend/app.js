@@ -15,7 +15,7 @@ const __dirname = path.resolve();
 dotenv.config();
  move this up here
 const corsOptions = {
-  origin: 'https://fullstack-uber-11.onrender.com',  // Make sure this matches your frontend's deployed URL
+  origin: 'https://fullstack-uber-21.onrender.com',  // Make sure this matches your frontend's deployed URL
   methods: ['GET', 'POST'],
   credentials: true
 };
