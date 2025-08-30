@@ -1,4 +1,3 @@
-
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -13,15 +12,16 @@ const app = express();
 const __dirname = path.resolve();
 
 dotenv.config();
-// move this up here
-// const corsOptions = {
-//   origin: 'https://fullstack-uber-21.onrender.com',  // Make sure this matches your frontend's deployed URL
-//   methods: ['GET', 'POST'],
-//   credentials: true
-// };
-app.use(cors(corsOptions));
 
-app.use(cors());
+// ✅ Define CORS options properly
+const corsOptions = {
+  origin: '3000',  // your frontend deployed URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+};
+
+// ✅ Use only once
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -40,14 +40,12 @@ app.use('/caption', captionroutes);
 app.use('/map', maprouter);
 app.use('/ride', ridesrouter);
 
-// 🛠 THEN serve frontend static files
+// 🛠 Serve frontend static files
 app.use(express.static(path.join(__dirname, '/Frontend/dist')));
 
-// 🛠 Finally, catch all other routes for frontend (SPA)
+// 🛠 Catch all other routes for frontend (SPA)
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'Frontend', 'dist', 'index.html'));
 });
 
 export default app;
-
-
