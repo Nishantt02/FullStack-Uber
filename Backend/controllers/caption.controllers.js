@@ -10,6 +10,7 @@ const registerCaptain = async (req, res, next) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
+  // recieve the data from the body
   const { fullname, email, password, vehicle } = req.body;
 
   const isCaptainAlreadyExist = await captainModel.findOne({ email });
